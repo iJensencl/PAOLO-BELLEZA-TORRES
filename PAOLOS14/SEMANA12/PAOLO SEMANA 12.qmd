@@ -1,0 +1,15 @@
+---
+title: "PAOLO SEMANA 12"
+format: html
+---
+
+```{r}
+img <- image_read("Semana12.png")
+img
+```
+
+```{r}
+img <- image_read("Semana12-1.png")
+img
+```
+

@@ -1,0 +1,12 @@
+---
+title: "PAOLO SEMANA 2"
+format: html
+---
+
+```{r}
+install.packages("magick")
+library(magick)
+img <- image_read("Semana2.png")
+img
+```
+

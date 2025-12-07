@@ -1,0 +1,15 @@
+---
+title: "PAOLO SEMAN 8"
+format: html
+---
+
+```{r}
+img <- image_read("Semana8.png")
+img
+```
+
+```{r}
+img <- image_read("Semana8-1.png")
+img
+```
+

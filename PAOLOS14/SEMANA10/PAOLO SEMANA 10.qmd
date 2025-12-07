@@ -1,0 +1,10 @@
+---
+title: "PAOLO SEMANA 10"
+format: html
+---
+
+```{r}
+img <- image_read("Semana10.png")
+img
+```
+
