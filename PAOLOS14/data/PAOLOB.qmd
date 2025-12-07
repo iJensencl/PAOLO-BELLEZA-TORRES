@@ -1,0 +1,53 @@
+---
+title: "PAOLOB"
+format: html
+---
+
+```{r}
+# Normalizar nombres de columnas (evita errores por mayúsculas o espacios)
+colnames(datos) <- trimws(tolower(colnames(datos)))
+
+# Detectar variables numéricas automáticamente
+vars_numericas <- names(datos)[sapply(datos, is.numeric)]
+
+# Verificar que existan columnas numéricas
+if (length(vars_numericas) < 2) {
+  stop("El dataset necesita al menos 2 columnas numéricas para hacer regresión.")
+}
+
+
+dependiente_simple <- vars_numericas[1]
+independiente_simple <- vars_numericas[2]
+
+formula_simple <- as.formula(paste(dependiente_simple, "~", independiente_simple))
+
+modelo_simple <- lm(formula_simple, data = datos)
+
+cat("\n\n===== REGRESIÓN LINEAL SIMPLE =====\n")
+print(summary(modelo_simple))
+
+
+if (length(vars_numericas) >= 3) {
+
+  dependiente_multiple <- vars_numericas[1]
+  independientes_multiple <- vars_numericas[2:length(vars_numericas)]
+
+  formula_multiple <- as.formula(
+    paste(dependiente_multiple, "~", paste(independientes_multiple, collapse = " + "))
+  )
+
+  modelo_multiple <- lm(formula_multiple, data = datos)
+
+  cat("\n\n===== REGRESIÓN MÚLTIPLE =====\n")
+  print(summary(modelo_multiple))
+
+} else {
+  cat("\n\n(No hay suficientes variables numéricas para regresión múltiple)\n")
+}
+
+
+cat("\n\n===== MATRIZ DE CORRELACIÓN =====\n")
+print(cor(datos[, vars_numericas], use = "complete.obs"))
+
+```
+
